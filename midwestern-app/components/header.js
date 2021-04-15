@@ -1,7 +1,9 @@
 export default function Header() {
   return (
-    <div>
-      <h2>Hello world 2</h2>
-    </div>
+    <header>
+      <div className="logo__container">
+        <img className="logo" src="images/mwi-logo-horizontal.png" alt="MidWwestern Interactive" />
+      </div>
+    </header>
   )
 }

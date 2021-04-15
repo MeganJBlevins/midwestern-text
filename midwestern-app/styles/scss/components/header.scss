@@ -1,0 +1,10 @@
+header {
+  border-bottom: 2px solid $black;
+}
+.logo__container {
+  max-width: 300px;
+  margin: 5px auto;
+  img {
+    width: 100%;
+  }
+}

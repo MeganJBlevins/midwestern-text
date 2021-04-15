@@ -1,17 +1,19 @@
 import Head from 'next/head'
-import Header from '../components/header'
+import ArticleList from '../components/articleList'
+import Articles from '../articles.json'
+import Contact from '../components/contact'
 
 
-export default function Home() {
+export default function Home({articles}) {
   return (
     <div>
       <Head>
         <title>Megan Blevins - Midwestern Interactive</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-     <div>
-       <h1>Hello World</h1>
-     </div>
+     <ArticleList 
+      articles={Articles}/>
+      <Contact />
     </div>
   )
 }

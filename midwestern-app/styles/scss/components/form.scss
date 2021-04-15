@@ -1,0 +1,10 @@
+fieldset {
+  &.error {
+    background-color: red;
+  }
+}
+.error--text {
+  &.hidden {
+    display: none;
+  }
+}

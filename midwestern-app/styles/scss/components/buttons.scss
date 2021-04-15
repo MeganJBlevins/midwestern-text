@@ -1,0 +1,11 @@
+.button {
+  background-color: $black;
+  color: $white;
+  border-radius: none;
+  padding: 8px;
+  font-size: 11px;
+  font-family: $sans;
+  @media screen and (min-width: $medium){
+    font-size: 12px;
+  }
+}
