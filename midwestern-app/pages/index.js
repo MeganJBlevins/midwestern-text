@@ -2,7 +2,7 @@ import Head from 'next/head'
 import ArticleList from '../components/articleList'
 import Articles from '../articles.json'
 import Contact from '../components/contact'
-
+import Test from '../components/test'
 
 export default function Home({articles}) {
   return (
@@ -14,6 +14,7 @@ export default function Home({articles}) {
      <ArticleList 
       articles={Articles}/>
       <Contact />
+      <Test />
     </div>
   )
 }

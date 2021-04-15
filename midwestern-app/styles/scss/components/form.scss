@@ -1,10 +1,55 @@
 fieldset {
+  border: none;
+  text-align: left;
   &.error {
-    background-color: red;
+    > label span {
+      display: block;
+      text-align: right;
+      color: red;
+    }
+  }
+  label {
+    color: $white;
+    display: block;
+    margin-bottom: 5px;
+    font-family: $sans;
+    position: relative;
+    span {
+      display: none;
+      text-align: right;
+      color: red;
+      right: -12px;
+      position: absolute;
+      top: 0;
+    }
+  }
+  input, textarea {
+    border: none;
+    padding: 10px 5px;
+    width: 100%;
+    line-height: 20px;
   }
 }
 .error--text {
   &.hidden {
     display: none;
+  }
+}
+form {
+  max-width: $small;
+  margin: 0 auto;
+  text-align: left;
+  .button {
+    margin-left: 14px;
+    margin-top: 5px;
+    border: none;
+  }
+}
+.error {
+  label {
+    span {
+      display: inline-block;
+      color: red;
+    }
   }
 }

@@ -95,28 +95,25 @@ class Form extends Component {
   render () {
     return (
       <form className="contact-form">
-        <h2>Sign up</h2>
         <fieldset className={this.state.emailError ? 'error' : ''}>
-          <label htmlFor="email">Email address</label>
+          <label htmlFor="email">Email <span>Must use a valid email.</span></label>
           <input type="email" className="form-control" name="email"
             value={this.state.email}
             onChange={this.handleUserInput}  />
         </fieldset>
         <fieldset className={this.state.subjectError ? 'error' : ''}>
-          <label htmlFor="subject">Subject</label>
-          <p className={"error--text " + (this.state.subjectError ? 'show' : 'hidden')}>Please enter a subject</p>
+          <label htmlFor="subject">Subject <span>Must use a valid email.</span></label>
           <input type="subject" className="form-control" name="subject"
             value={this.state.subject}
             onChange={this.handleUserInput}  />
         </fieldset>
         <fieldset className={this.state.messageError ? 'error' : ''}>
-          <label htmlFor="message">Message</label>
-          <p className={"error--text " + (this.state.messageError ? 'show' : 'hidden')}>Please enter a message</p>
-          <textarea type="message" className="form-control" name="message"
+          <label htmlFor="message">Message <span>Must use a valid email.</span></label>
+          <textarea rows="10" type="message" className="form-control" name="message"
             value={this.state.message}
             onChange={this.handleUserInput}  />
         </fieldset>
-        <button className="btn btn-primary" onClick={this.handleSubmit}>Sign up</button>
+        <button className="button" onClick={this.handleSubmit}>Sign up</button>
       </form>
     )
   }
