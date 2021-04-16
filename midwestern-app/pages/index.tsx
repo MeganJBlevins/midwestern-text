@@ -3,11 +3,17 @@ import ArticleList from '../components/articles/articleList'
 import Contact from '../components/contact/contact'
 import Test from '../components/test/test'
 
-export interface ListProps {
-  articles?: Article[]
+
+type Article = {
+  id: number,
+  title: String,
+  body: String,
+  image: String
 }
 
-function Home({articles}: ListProps) {
+async function Home() {
+  const res = await fetch('https://midwestern-test.netlify.app/articles.json');
+  const articles: Article[] = await res.json();
   return (
     <>
       <Head>
@@ -23,21 +29,5 @@ function Home({articles}: ListProps) {
     </>
   )
 }
-
-
-export interface Article {
-  id: number,
-  title: String,
-  body: String,
-  image: String
-}
-export async function getServerSideProps() {
-  const res = await fetch('http://localhost:3000/articles.json');
-  const articles: Article[] = await res.json();
-
-  // Pass data to the page via props
-  return { props: { articles } };
-}
-
 
 export default Home

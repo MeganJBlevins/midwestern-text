@@ -13,7 +13,7 @@ class Test extends React.Component<IProps, IState>  {
   }
 
   async getData() {
-    const res = await fetch('http://localhost:3000/lists.json');
+    const res = await fetch('https://midwestern-test.netlify.app/lists.json');
     const lists: Array<Array<string>> = await res.json();
 
     this.setState({lists: lists});
