@@ -1,0 +1,18 @@
+.inline-link {
+  color: red;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.list__wrapper {
+  @media screen and (min-width: $small){
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.list {
+  padding: 5px 20px;
+}
+.list--final {
+  background-color: $lgray;
+}

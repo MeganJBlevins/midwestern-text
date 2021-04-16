@@ -5,15 +5,19 @@
   @media screen and (min-width: $medium){
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 25px;
+    grid-gap: 40px;
     grid-auto-rows: 1fr
   }
 }
 .article {
   padding: 20px 0px;
+  h2 {
+    margin-top: 25px;
+    margin-bottom: 15px;
+  }
   a {
     display: inline-block;
-    margin-top: 10px;
+    margin-top: 15px;
   }
 }
 .article__image {

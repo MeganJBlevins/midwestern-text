@@ -4,5 +4,9 @@ body {
 .container {
   max-width: $large;
   margin: 0 auto;
-  padding: 1em;
+  padding: 2em 1em;
+
+}
+.hidden {
+  display: none;
 }
