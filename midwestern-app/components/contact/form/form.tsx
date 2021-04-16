@@ -17,7 +17,6 @@ class Form extends React.Component<IProps, IState> {
       subjectErrors: false,
       messageErrors: false,
       submitted: false,
-      errors: []
     };
   }
  

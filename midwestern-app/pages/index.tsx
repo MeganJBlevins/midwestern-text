@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import ArticleList from '../components/articles/articleList'
 import Contact from '../components/contact/contact'
-import Test from '../components/test'
+import Test from '../components/test/test'
 
 export interface ListProps {
   articles?: Article[]
@@ -19,7 +19,7 @@ function Home({articles}: ListProps) {
         articles={articles}/>
       }
       <Contact />
-      {/* <Test /> */}
+      <Test />
     </>
   )
 }
