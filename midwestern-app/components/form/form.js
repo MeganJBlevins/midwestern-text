@@ -55,9 +55,24 @@ class Form extends Component {
   
   handleSubmit = (event) => {
     event.preventDefault();
-    if(validateForm(this.state.errors) && this.state.email) {
+    if(validateForm(this.state.errors) && this.state.email && this.state.message && this.state.subject) {
       this.setState({submitted: true})
-    }else{
+    } else {
+      let errorsList = this.state.errors;
+
+      if(this.state.email == null){
+        errorsList.email = true
+      }
+
+      if(this.state.subject == null){
+        errorsList.subject = true
+      }
+      if (this.state.message == null) {
+          errorsList.message = true
+      }
+
+      this.setState({errors: errorsList})
+
       console.error('Invalid Form')
     }
   }

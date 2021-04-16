@@ -14,6 +14,9 @@
 .list {  
   border-bottom: 1px solid $gray;
   padding: 5px 20px;
+  @media screen and (min-width: $medium){
+    border-bottom: 0px;
+  }
 }
 .list--final {
   background-color: $lgray;
