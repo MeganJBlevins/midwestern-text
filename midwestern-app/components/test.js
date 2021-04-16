@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Lists from '../lists.json'
+import Lists from 'lists.json'
 
 class Test extends Component {
   constructor (props) {
