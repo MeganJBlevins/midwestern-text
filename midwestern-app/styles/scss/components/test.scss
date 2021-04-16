@@ -5,12 +5,14 @@
   }
 }
 .list__wrapper {
-  @media screen and (min-width: $small){
+
+  @media screen and (min-width: $medium){
     display: grid;
     grid-template-columns: repeat(3, 1fr);
   }
 }
-.list {
+.list {  
+  border-bottom: 1px solid $gray;
   padding: 5px 20px;
 }
 .list--final {

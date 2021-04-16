@@ -1,7 +1,4 @@
 .articles__wrapper {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   @media screen and (min-width: $medium){
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -23,4 +20,7 @@
 .article__image {
   width: 100%;
   height: 100px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }

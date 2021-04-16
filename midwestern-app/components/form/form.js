@@ -1,120 +1,97 @@
 import React, { Component } from 'react';
 
+const validEmailRegex = 
+  RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
+
+const validateForm = (errors) => {
+  let valid = true;
+  Object.values(errors).forEach(
+    // if we have an error string set valid to false
+    (val) => val && (valid = false)
+  );
+  return valid;
+}
+
 class Form extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      email: '',
-      subject: '',
-      message: '',
-      emailError: false,
-      subjectError: false,
-      messageError: false,
-      emailValid: false,
-      subjectValid: false,
-      messageValid: false,
-      formValid: false,
+      email: null,
+      subject: null,
+      message: null,
+      errors: {
+        email: false,
+        subject: false,
+        message: false,
+      },
+      submitted: false
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
-
-  handleUserInput = (e) => {
-    this.setState({[e.target.name]: e.target.value});
-  }
-
-  validateField(fieldName, value) {
-    let email = this.state.emailValid;
-    let subject = this.state.subjectValid;
-    let message = this.state.messageValid;
-
-    switch(fieldName) {
-      case 'email':
-        var mailformat = /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i;
-        email = value.match(mailformat) ? true : false;
-        if(value.match(mailformat)){
-          email = true;
-          this.state.emailError = false;
-        } else {
-          email = false;
-          this.state.emailError = true;
-        }
+ 
+  handleChange = (event) => {
+    event.preventDefault();
+    const { name, value } = event.target;
+    let errors = this.state.errors;
+  
+    switch (name) {
+      case 'email': 
+        errors.email = 
+          (!validEmailRegex.test(value) && event.target.value != "");
         break;
-      case 'subject':
-        const subjectValue = value.trim() != '';
-        if(subjectValue){
-          subject = true;
-          this.state.subjectError = false;
-        } else {
-          subject = false;
-          this.state.subjectError = true;
-        }
+      case 'subject': 
+        errors.subject = 
+          value.length <= 0
         break;
-      case 'message':
-        const messageValue = value.trim() != '';
-        if(messageValue){
-          message = true;
-          this.state.messageError = false;
-        } else {
-          message = false;
-          this.state.messageError = true;
-        }
+      case 'message': 
+        errors.message = 
+          value.length <= 0
         break;
       default:
         break;
     }
-    this.setState(
-      {
-        emailValid: email,
-        subjectValid: subject,
-        messageValid: message
-      },
-      this.validateForm
-    );
+  
+    this.setState({errors, [name]: value});
   }
-
-  validateForm() {
-    this.setState({formValid: this.state.emailValid && this.state.subjectValid && this.state.messageValid});
-  }
-
-  errorClass(error) {
-    return(error.length === 0 ? '' : 'has-error');
-  }
-
-  handleSubmit(e) {
-    alert('submitted');
-    e.preventDefault();
-    const fields = ['email', 'subject', 'message'];    
-    fields.forEach(element => this.validateField(element, this.state[element]));
-    if(this.state.formValid){
-      alert('congratulations! You submitted a form!');
-    } else {
-      alert('what is wrong with this thing?!');
+  
+  handleSubmit = (event) => {
+    event.preventDefault();
+    if(validateForm(this.state.errors) && this.state.email) {
+      this.setState({submitted: true})
+    }else{
+      console.error('Invalid Form')
     }
   }
-
   render () {
+    const {errors} = this.state;
+    console.log('submitted: ', this.state.submitted)
     return (
-      <form className="contact-form">
-        <fieldset className={this.state.emailError ? 'error' : ''}>
-          <label htmlFor="email">Email <span>Must use a valid email.</span></label>
-          <input type="email" className="form-control" name="email"
-            value={this.state.email}
-            onChange={this.handleUserInput}  />
-        </fieldset>
-        <fieldset className={this.state.subjectError ? 'error' : ''}>
-          <label htmlFor="subject">Subject <span>Must use a valid email.</span></label>
-          <input type="subject" className="form-control" name="subject"
-            value={this.state.subject}
-            onChange={this.handleUserInput}  />
-        </fieldset>
-        <fieldset className={this.state.messageError ? 'error' : ''}>
-          <label htmlFor="message">Message <span>Must use a valid email.</span></label>
-          <textarea rows="10" type="message" className="form-control" name="message"
-            value={this.state.message}
-            onChange={this.handleUserInput}  />
-        </fieldset>
-        <button className="button" onClick={this.handleSubmit}>Sign up</button>
-      </form>
+      <div>
+        {!this.state.submitted && 
+         <form className={this.state.submitted ? 'hidden' : ''} onSubmit={this.handleSubmit} noValidate >
+            <fieldset className={errors.email ? 'error' : ''}>
+              <label htmlFor="email">Email <span><em>Must use a valid email.</em></span></label>
+              <input type='email' name='email' onChange={this.handleChange} noValidate />
+            </fieldset>
+            <fieldset className={errors.subject ? 'error' : ''}>
+              <label htmlFor="subject">Subject <span><em>Subject is required.</em></span></label>
+              <input type='text' name='subject' onChange={this.handleChange} noValidate />
+            </fieldset>
+            <fieldset className={errors.message ? 'error' : ''}>
+              <label htmlFor="message">Message <span><em>Message is required.</em></span></label>
+              <textarea rows="8" name='message' onChange={this.handleChange} noValidate />
+            </fieldset>
+            <fieldset className='submit'>
+              <button className="button">Submit</button>
+            </fieldset>
+          </form>
+        }
+        {this.state.submitted && 
+          <div className={"success " + (this.state.submitted ? '' : 'hidden')}>
+            <h2>Thank you for reaching out to us!</h2>
+            <p>Curabitur blandit tempus porttitor. Aenean lacinia bibendum nulla sed consectetur. Cras mattis consectetur purus sit amet fermentum.</p>
+          </div>
+        }
+      </div>
     )
   }
 }
