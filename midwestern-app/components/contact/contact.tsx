@@ -1,4 +1,5 @@
 import Form from './form/form'
+
 export default function Contact() {
   return (
     <section className="contact">

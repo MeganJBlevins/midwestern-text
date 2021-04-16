@@ -1,10 +1,10 @@
 import Head from 'next/head'
-import ArticleList from '../components/articleList'
-import Contact from '../components/contact'
+import ArticleList from '../components/articles/articleList'
+import Contact from '../components/contact/contact'
 import Test from '../components/test'
 
 export interface ListProps {
-  articles: Article[]
+  articles?: Article[]
 }
 
 function Home({articles}: ListProps) {
@@ -14,8 +14,10 @@ function Home({articles}: ListProps) {
         <title>Megan Blevins - Midwestern Interactive</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-     <ArticleList 
-      articles={articles}/>
+      {articles != undefined &&
+        <ArticleList 
+        articles={articles}/>
+      }
       <Contact />
       {/* <Test /> */}
     </>

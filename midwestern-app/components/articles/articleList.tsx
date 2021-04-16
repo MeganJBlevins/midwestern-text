@@ -1,4 +1,10 @@
-export default function ArticleList({articles}) {
+import { Article } from './interface';
+
+export interface ArticleProps {
+  articles: Article[]
+}
+
+export default function ArticleList({articles} : ArticleProps) {
   return (
     <section id="articles">
       <div className="container">

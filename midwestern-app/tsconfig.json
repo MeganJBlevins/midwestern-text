@@ -21,7 +21,7 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx", "components/form/form.js"
+    "**/*.tsx", "components/contact/form/form.js"
   ],
   "exclude": [
     "node_modules"
