@@ -3,7 +3,7 @@ export default function Header() {
     <header>
       <div className="logo__container">
        <img
-          src="/images/mwi-logo-horizontal.png"
+          src="images/mwi-logo-horizontal.png"
           alt="Midwestern Interactive Logo"
         />
       </div>

@@ -4,3 +4,11 @@ export interface Article {
   body: String,
   image: String
 }
+export interface IProps {
+
+}
+
+export interface IState {
+  articles: Array<Article>
+
+}
